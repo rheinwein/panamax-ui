@@ -21,13 +21,14 @@ describe 'searching for templates and images' do
 
       # remote image result
       expect(page.find_link('Docker Hub')['href']).to eq "#{DOCKER_INDEX_BASE_URL}u/tutum/wordpress"
-      expect(page.find_link('imagelayers.io')['href']).to eq "#{IMAGELAYERS_URL}?images=tutum/wordpress"
+      expect(page.find_link('Inspect this image')['href']).to eq "#{IMAGELAYERS_URL}?images=tutum/wordpress"
       expect(page).to have_content 'Wordpress Docker image - listens in port 80.'
       expect(page).to have_css '.star-count', text: '7'
 
       # template result
       expect(page).to have_content 'a wordpress template'
       expect(page).to have_content 'More Details'
+      expect(page.find_link('Inspect template')['href']).to eq "#{IMAGELAYERS_URL}?images=centurylink/aws-cli-wetty:latest"
       expect(page).to have_css '.image-count', text: '2 Images'
       expect(page).to have_css '.microcopy', text: 'UTC'
       expect(page).to have_css 'img[src="/assets/type_icons/wordpress.svg"]'
